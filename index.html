@@ -1,0 +1,50 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+             <h1 style="text-align: center;">My<span>Book</span>List </h1>
+             <div class="alert alert-danger" id="alert" role="alert" style="display: none;">
+                Please, fill in all the details!
+              </div>
+              <div class="alert alert-success" id="success-alert" role="alert" style="display: none;">
+                Book added successfully!
+              </div>
+
+    <form action="" id="book-form">
+            <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Book</label>
+            <input type="text" class="form-control" id="title">
+            </div>
+            <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Author</label>
+            <input type="text" class="form-control" id="author">
+            </div>
+            <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">ISBN#</label>
+            <input type="text" class="form-control" id="isbn">
+            </div>
+            <div class="d-grid gap-2">
+                <input type="submit" value="Add Book" class="form-control btn btn-primary" id="exampleFormControlInput1">
+            </div>
+    </form>
+    <table class="table table-striped mt-4">
+            <thead>
+                <tr>
+                <th scope="col">Book</th>
+                <th scope="col">Author</th>
+                <th scope="col">ISBN#</th>
+                </tr>
+            </thead>
+            <tbody id="book-list">
+               
+            </tbody>
+        </table>
+    </div>
+   <script src="index.js"></script>
+</body>
+</html>
