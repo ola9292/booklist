@@ -11,19 +11,19 @@ class Book{
 //UI class that handles UI Tasks
 class UI{
     static displayBooks(){
-        const storedBooks = [
-            {
-                title: 'Book One',
-                author: 'John Doe',
-                isbn: '3434345'
-            },
-            {
-                title: 'Book Two',
-                author: 'Jesse Lingard',
-                isbn: '3784345'
-            }
-        ];
-        const books = storedBooks;
+        // const storedBooks = [
+        //     {
+        //         title: 'Book One',
+        //         author: 'John Doe',
+        //         isbn: '3434345'
+        //     },
+        //     {
+        //         title: 'Book Two',
+        //         author: 'Jesse Lingard',
+        //         isbn: '3784345'
+        //     }
+        // ];
+        const books = Store.getBooks();
 
         books.forEach((book)=>{
             return UI.addBookToList(book);
@@ -81,6 +81,11 @@ document.getElementById('book-form').addEventListener('submit',(e)=>{
             const book = new Book(title,author,isbn)
             //add new created book to ui
             UI.addBookToList(book)
+
+            //add book to locat storage
+            Store.addBook(book);
+
+            //clear all fields
             UI.clearField()
 
             //success alert
@@ -100,4 +105,40 @@ document.getElementById('book-list').addEventListener('click',function(e){
       e.target.parentElement.parentElement.remove()
     }
     
+    //remove book from store
+    Store.removeBook(e.target.parentElement.previousElementSibling.textContent);
+
 })
+
+// Store Class: Handles Storage
+class Store {
+    static getBooks() {
+      let books;
+      if(localStorage.getItem('books') === null) {
+        books = [];
+      } else {
+        books = JSON.parse(localStorage.getItem('books'));
+      }
+  
+      return books;
+    }
+  
+    static addBook(book) {
+      const books = Store.getBooks();
+      books.push(book);
+      localStorage.setItem('books', JSON.stringify(books));
+    }
+  
+    static removeBook(isbn) {
+      const books = Store.getBooks();
+  
+      books.forEach((book, index) => {
+        if(book.isbn === isbn) {
+          books.splice(index, 1);
+        }
+      });
+  
+      localStorage.setItem('books', JSON.stringify(books));
+    }
+  }
+  
